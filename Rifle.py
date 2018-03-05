@@ -1,14 +1,24 @@
+# CSCI3180 Principles of Programming Languages
+# --- Declaration ---
+# I declare that the assignment here submitted is original except for source
+# material explicitly acknowledged. I also acknowledge that I am aware of
+# University policy and regulations on honesty in academic work, and of the
+# disciplinary guidelines and procedures applicable to breaches of such policy and regulations, as contained in the website
+# http://www.cuhk.edu.hk/policy/academichonesty/
+# Assignment 2
+# Name : Li Ho Yin
+#Student ID : 1155077785
+#Email Addr : hyli6@cse.cuhk.edu.hk
 from Weapon import Weapon
 
 
 class Rifle(Weapon):
-    RIFLE_RANGE = 4
-    RIFLE_INIT_DAMAGE = 10
-    AMMO_LIMIT = 6
-    AMMO_RECHARGE = 3
-    ammo = 0
 
     def __init__(self, owner):
+        self.RIFLE_RANGE = 4
+        self.RIFLE_INIT_DAMAGE = 10
+        self.AMMO_LIMIT = 6
+        self.AMMO_RECHARGE = 3
         Weapon.__init__(self,self.RIFLE_RANGE, self.RIFLE_INIT_DAMAGE, owner)
         self.ammo = self.AMMO_LIMIT
 
