@@ -10,8 +10,7 @@ class SurvivalGame(object):
     n = 0
     D = 10
     O = 2
-    bothAlive = True
-    #   NOT SURE
+    bothAlive = True 
     teleportObjects = None
 
     def __init__(self):
@@ -26,7 +25,7 @@ class SurvivalGame(object):
                 pos = self.teleportObjects[i].getPos()
                 printObject[pos.getX()][pos.getY()] = \
                     self.teleportObjects[i].getName()
-                print "player ",pos.getX(),pos.getY()
+            #print "player ",pos.getX(),pos.getY()
             i += 1
 
         i=self.n
@@ -38,7 +37,7 @@ class SurvivalGame(object):
                 pos = self.teleportObjects[i].getPos()
                 tmp = i+1-self.n
                 printObject[pos.getX()][pos.getY()] = 'O'+str(tmp)
-                print "Obstacle ",pos.getX(),pos.getY()
+            #print "Obstacle ",pos.getX(),pos.getY()
             i += 1
 
         #print
@@ -94,16 +93,16 @@ class SurvivalGame(object):
         self.n = int(raw_input())
         self.teleportObjects = [object() for x in range(self.n+self.O)]
         for i in range(0,self.n/2):
-            print "created ",i,"th entity"
+            #print "created ",i,"th entity"
             self.teleportObjects[i] = Human(0,0,i,self)
             self.teleportObjects[i+self.n/2] = Chark(0,0,i,self)
             if i == self.n/2-1:
-                print "last one gets wand"
+                #print "last one gets wand"
                 self.teleportObjects[i].equipment = Wand(self.teleportObjects[i])
                 self.teleportObjects[i+self.n/2].equipment = Wand(self.teleportObjects[i+self.n/2])
         i= 0
         while(i<self.O):
-            print "created ",i,"th Obstacle"
+            #print "created ",i,"th Obstacle"
             self.teleportObjects[i+self.n] = Obstacle(0,0,i,self)
             i += 1
 
@@ -111,7 +110,7 @@ class SurvivalGame(object):
     def gameStart(self):
         turn = 0
         numOfAlivePlayers = self.n
-        print "num of alive player ",numOfAlivePlayers
+        #print "num of alive player ",numOfAlivePlayers
         while numOfAlivePlayers > 1 and self.bothAlive is True:
             if turn == 0:
                 for obj in self.teleportObjects :
@@ -127,7 +126,7 @@ class SurvivalGame(object):
                     print ""
 
             turn = (turn + 1) % self.n
-            print "turn ",turn
+            #print "turn ",turn
             numOfAlivePlayers = 0
             humanAlive = False
             charkAlive = False
@@ -144,9 +143,9 @@ class SurvivalGame(object):
                             charkAlive = True
             if humanAlive and charkAlive:
                 self.bothAlive = True
-        for i in range(0,self.n):
-            if isinstance(self.teleportObjects[i],Player):
-                print "player health",self.teleportObjects[i].health
+                    #for i in range(0,self.n):
+                    #if isinstance(self.teleportObjects[i],Player):
+                    #print "player health",self.teleportObjects[i].health
         print "Game over."
         self.printBoard()
 

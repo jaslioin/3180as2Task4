@@ -33,8 +33,6 @@ class Rifle(Weapon):
                 else:
                     player.decreaseHealth(self.effect * ammoToUse)
                     self.ammo -= ammoToUse
-            else:
-                print "Nothing there"
         else:
             print "Out of reach."
 

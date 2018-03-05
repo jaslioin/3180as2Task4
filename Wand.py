@@ -17,8 +17,6 @@ class Wand(object):
                     player.increaseHealth(self.effect)
                 else:
                     print "Not the same race"
-            else:
-                print "Nothing there"
         else:
             print "Out of reach."
 

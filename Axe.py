@@ -25,8 +25,5 @@ class Axe(Weapon):
                     print "You cannot attack your same race"
                 else:
                     player.decreaseHealth(self.effect)
-            else:
-                print "Nothing there"
-
         else:
             print "Out of reach."

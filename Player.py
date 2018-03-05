@@ -40,7 +40,7 @@ class Player(object):
     def increaseHealth(self,h):
         self.health += h
         if self.health > self.HEALTH_CAP:
-            print "exceed health cap!"
+            print "reached health cap!"
             self.health = self.HEALTH_CAP
     def decreaseHealth(self,h):
         self.health -= h
@@ -64,14 +64,13 @@ class Player(object):
             print "Specify your target position (Input 'x y')."
             posx, posy = map(int, raw_input().split())
             if self.pos.distance(posx,posy) > self.MOBILITY:
-                print "your mobility ", self.MOBILITY
                 print "Beyond your reach. Staying still."
             elif self.game.positionOccupied(posx,posy):
                 print "Position occupied. Cannot move there."
             else:
                 self.pos.setPos(posx,posy)
                 self.game.printBoard()
-                print "You can now \n1.action\n2.End the turn"
+                print "You can now \n1.Action\n2.End the turn"
                 if int(raw_input()) == 1:
                     print "Input position to act. (Input 'x y')"
                     attx, atty = map(int, raw_input().split())

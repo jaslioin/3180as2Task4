@@ -1,6 +1,5 @@
 import random
 from Pos import Pos
-#from SurvivalGame import SurvivalGame
 
 
 class Obstacle(object):

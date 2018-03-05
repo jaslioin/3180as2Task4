@@ -1,10 +1,6 @@
-#from Player import Player
-
-
 class Weapon(object):
     range = 0
     effect = 0
-    #   NOT SURE
     owner = None
 
     def __init__(self, range, damage, owner):
