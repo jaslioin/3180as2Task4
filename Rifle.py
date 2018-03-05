@@ -26,8 +26,15 @@ class Rifle(Weapon):
         if self.owner.pos.distance(posx, posy) <= self.range:
             player = self.owner.game.getPlayer(posx, posy)
             if player is not None:
-                player.decreaseHealth(self.effect * ammoToUse)
-                self.ammo -= ammoToUse
+                print "target race ",player.getName()
+                print "owner race ",self.owner.getName()
+                if player.getName()[0] == self.owner.getName()[0]:
+                    print "You cannot attack your same race"
+                else:
+                    player.decreaseHealth(self.effect * ammoToUse)
+                    self.ammo -= ammoToUse
+            else:
+                print "Nothing there"
         else:
             print "Out of reach."
 

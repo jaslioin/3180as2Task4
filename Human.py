@@ -1,6 +1,6 @@
 from Player import Player
 from Rifle import Rifle
-
+from Wand import Wand
 
 class Human(Player):
     def __init__(self, posx, posy, index, game):
@@ -16,7 +16,11 @@ class Human(Player):
         pass
 
     def askForMove(self):
-        print("You are a human (H%d) using Rifle. (Range %d, Ammo #: %d, Damage per shot: %d)"
-              % (self.index, self.equipment.getRange(), self.equipment.getAmmo(),
-                 self.equipment.getEffect()))
+        if isinstance(self.equipment,Rifle):
+            print("You are a human (H%d) using Rifle. (Range %d, Ammo #: %d, Damage per shot: %d)"
+                  % (self.index, self.equipment.getRange(), self.equipment.getAmmo(),
+                     self.equipment.getEffect()))
+        if isinstance(self.equipment,Wand):
+            print("You are a human (H%d) using Wand. (Range %d, amount per heal: %d)"
+                % (self.index, self.equipment.getRange(),self.equipment.getEffect()))
         super(Human,self).askForMove()

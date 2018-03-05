@@ -1,6 +1,6 @@
 from Player import Player
 from Axe import Axe
-
+from Wand import Wand
 
 class Chark(Player):
 
@@ -15,6 +15,10 @@ class Chark(Player):
         self.equipment.enhance()
 
     def askForMove(self):
-        print("You are a Chark (C%d) using Axe. (Range: %d, Damage: %d)"
-              % (self.index, self.equipment.getRange(), self.equipment.getEffect()))
+        if isinstance(self.equipment,Axe):
+            print("You are a Chark (C%d) using Axe. (Range: %d, Damage: %d)"
+                  % (self.index, self.equipment.getRange(), self.equipment.getEffect()))
+        if isinstance(self.equipment,Wand):
+            print("You are a Chark (C%d) using Wand. (Range %d, amount per heal: %d)"
+                  % (self.index, self.equipment.getRange(),self.equipment.getEffect()))
         super(Chark, self).askForMove()
