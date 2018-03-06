@@ -67,7 +67,7 @@ class SurvivalGame(object):
             print row,
             col=0
             while col < self.D:
-                print("| %s " %printObject[row][col]),
+                print("| %3s" %printObject[row][col]),
                 col+=1
             print "|"
             i=0
@@ -79,14 +79,9 @@ class SurvivalGame(object):
 
     def positionOccupied(self, randx, randy):
         for o in self.teleportObjects:
-            if isinstance(o,Player):
-                pos = o.getPos()
-                if pos.getX() == randx and pos.getY() == randy:
-                    return True
-            else:
-                pos = o.getPos()
-                if pos.getX() == randx and pos.getY() == randy:
-                    return True
+            pos = o.getPos()
+            if pos.getX() == randx and pos.getY() == randy:
+                return True
         return False
 
     def getPlayer(self, randx, randy):
@@ -100,7 +95,13 @@ class SurvivalGame(object):
     def init(self):
         print "Welcome to Kafustrok. Light blesses you. \n" \
               "Input number of players: (a even number)"
-        self.n = int(raw_input())
+        while(True):
+            try:
+                self.n = int(raw_input())
+                break
+            except ValueError:
+                print("[WARNING]input one number please")
+
         self.teleportObjects = [object() for x in range(self.n+self.O)]
         for i in range(0,self.n/2):
             #print "created ",i,"th entity"
@@ -142,15 +143,14 @@ class SurvivalGame(object):
             charkAlive = False
             self.bothAlive = False
             for i in range(0,self.n):
-                if isinstance(self.teleportObjects[i],Player):
-                    if isinstance(self.teleportObjects[i],Human):
-                        if self.teleportObjects[i].health > 0:
-                            numOfAlivePlayers += 1
-                            humanAlive = True
-                    if isinstance(self.teleportObjects[i],Chark):
-                        if self.teleportObjects[i].health > 0:
-                            numOfAlivePlayers += 1
-                            charkAlive = True
+                if isinstance(self.teleportObjects[i],Human):
+                    if self.teleportObjects[i].health > 0:
+                        numOfAlivePlayers += 1
+                        humanAlive = True
+                if isinstance(self.teleportObjects[i],Chark):
+                    if self.teleportObjects[i].health > 0:
+                        numOfAlivePlayers += 1
+                        charkAlive = True
             if humanAlive and charkAlive:
                 self.bothAlive = True
                     #for i in range(0,self.n):

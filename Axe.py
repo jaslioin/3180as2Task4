@@ -33,7 +33,9 @@ class Axe(Weapon):
             if player is not None:
                 print "target race ",player.getName()
                 print "owner race ",self.owner.getName()
-                if player.getName()[0] == self.owner.getName()[0]:
+                if player.getName()[0] == self.owner.getName()[0] and player.getName()[1] in [0,1,2,3,4,5,6,7,8,9]:
+                    print "You cannot attack your same race"
+                elif player.getName()[1] == self.owner.getName()[0]:
                     print "You cannot attack your same race"
                 else:
                     player.decreaseHealth(self.effect)

@@ -14,7 +14,7 @@ class Wand(object):
     def __init__(self, owner):
         self.owner = owner
         self.WAND_RANGE = 5
-        self.effect = 10
+        self.effect = 5
 
     def action(self, posx, posy):
         print "You are using wand healing " ,posx,"",posy,"."
@@ -23,7 +23,9 @@ class Wand(object):
             if player is not None:
                 print "target race ",player.getName()
                 print "owner race ",self.owner.getName()
-                if player.getName()[0] == self.owner.getName()[0]:
+                if player.getName()[0] == self.owner.getName()[0] and player.getName()[1] in [0,1,2,3,4,5,6,7,8,9]:
+                    player.increaseHealth(self.effect)
+                elif player.getName()[1] == self.owner.getName()[0]:
                     player.increaseHealth(self.effect)
                 else:
                     print "Not the same race"

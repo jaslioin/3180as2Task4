@@ -24,7 +24,11 @@ class Chark(Player):
     def teleport(self):
         super(Chark, self).teleport()
         self.equipment.enhance()
-
+    def increaseHealth(self,h):
+        if self.health <=0:
+            self.myString = "C" + str(self.index)
+            print self.myString,"revived!"
+        super(Chark,self).increaseHealth(h)
     def askForMove(self):
         if isinstance(self.equipment,Axe):
             print("You are a Chark (C%d) using Axe. (Range: %d, Damage: %d)"

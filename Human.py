@@ -23,6 +23,11 @@ class Human(Player):
         super(Human, self).teleport()
         self.equipment.enhance()
 
+    def increaseHealth(self,h):
+        if self.health <=0:
+            self.myString = "H" + str(self.index)
+            print self.myString,"revived!"
+        super(Human,self).increaseHealth(h)
     def distance(self, posx, posy):
         pass
 

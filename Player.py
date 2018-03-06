@@ -26,7 +26,6 @@ class Player(object):
         self.game = game
         self.equipment = None
         self.myString = ''
-        self.HEALTH_CAP = 0
     def getPos(self):
         return self.pos
 
@@ -61,12 +60,21 @@ class Player(object):
         print("1. Move")
         print("2. Action")
         print("3. End tne turn")
-
-        a = int(raw_input())
-
+        while(True):
+            try:
+                a = int(raw_input())
+                break
+            except ValueError:
+                print "[WARNING]input one digit please"
         if a == 1:
             print "Specify your target position (Input 'x y')."
-            posx, posy = map(int, raw_input().split())
+            while True:
+                try:
+                    posx, posy = map(int, raw_input().split())
+                    break
+                except ValueError:
+                    print "[WARNING]input two numbers split by space please"
+
             if self.pos.distance(posx,posy) > self.MOBILITY:
                 print "Beyond your reach. Staying still."
             elif self.game.positionOccupied(posx,posy):
@@ -75,14 +83,29 @@ class Player(object):
                 self.pos.setPos(posx,posy)
                 self.game.printBoard()
                 print "You can now \n1.Action\n2.End the turn"
-                if int(raw_input()) == 1:
-                    print "Input position to act. (Input 'x y')"
-                    attx, atty = map(int, raw_input().split())
-                    self.equipment.action(attx,atty)
+                while True:
+                    try:
+                        if int(raw_input()) == 1:
+                            print "Input position to act. (Input 'x y')"
+                            while True:
+                                try:
+                                    attx, atty = map(int, raw_input().split())
+                                    self.equipment.action(attx,atty)
+                                    break
+                                except ValueError:
+                                    print "[WARNING]Input two numbers split by space please"
+                        break
+                    except ValueError:
+                        print "[WARNING]input one digit please"
         elif a == 2:
             print "Input position to act."
-            attx, atty = map(int, raw_input().split())
-            self.equipment.action(attx,atty)
+            while True:
+                try:
+                    attx, atty = map(int, raw_input().split())
+                    self.equipment.action(attx,atty)
+                    break
+                except ValueError:
+                    print "[WARNING]Input two numbers split by space please"
         elif a == 3:
             return
 
