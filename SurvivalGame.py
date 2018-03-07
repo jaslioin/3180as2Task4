@@ -20,34 +20,31 @@ from Wand import Wand
 class SurvivalGame(object):
 
     def __init__(self):
-        #self.n = 0
         self.D = 10
         self.O = 2
         self.bothAlive = True
-    #self.teleportObjects = None
+
 
     def printBoard(self):
         printObject = [["  " for x in range(self.D)] for y in range(self.D)]
 
         i=0
         while(i<self.n):
-            #if isinstance(self.teleportObjects[i],Player):
+
             pos = self.teleportObjects[i].getPos()
             try:
                 printObject[pos.getX()][pos.getY()] = \
                     self.teleportObjects[i].getName()
             except AttributeError:
                 pass
-            #print "player ",pos.getX(),pos.getY()
+
             i += 1
 
         i=self.n
         while i<self.n+self.O :
             if isinstance(self.teleportObjects[i],Obstacle):
                 pos = self.teleportObjects[i].getPos()
-                #tmp = i+1-self.n
                 printObject[pos.getX()][pos.getY()] = 'O'+str(i+1-self.n)
-            #print "Obstacle ",pos.getX(),pos.getY()
             i += 1
 
         #print
@@ -121,7 +118,6 @@ class SurvivalGame(object):
     def gameStart(self):
         turn = 0
         numOfAlivePlayers = self.n
-        #print "num of alive player ",numOfAlivePlayers
         while numOfAlivePlayers > 1 and self.bothAlive is True:
             if turn == 0:
                 for obj in self.teleportObjects :
@@ -140,7 +136,7 @@ class SurvivalGame(object):
                     pass
 
             turn = (turn + 1) % self.n
-            #print "turn ",turn
+
             numOfAlivePlayers = 0
             humanAlive = False
             charkAlive = False
@@ -156,9 +152,6 @@ class SurvivalGame(object):
                         charkAlive = True
             if humanAlive and charkAlive:
                 self.bothAlive = True
-                    #for i in range(0,self.n):
-                    #if isinstance(self.teleportObjects[i],Player):
-                    #print "player health",self.teleportObjects[i].health
         print "Game over."
         self.printBoard()
 
