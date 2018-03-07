@@ -15,7 +15,6 @@ class Pos:
         self.x = x
         self.y = y
 
-
     def distance(self, x1, y1):
         return abs(self.x - x1) + abs(self.y - y1)
 

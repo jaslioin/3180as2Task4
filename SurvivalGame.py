@@ -20,33 +20,33 @@ from Wand import Wand
 class SurvivalGame(object):
 
     def __init__(self):
-        self.n = 0
+        #self.n = 0
         self.D = 10
         self.O = 2
         self.bothAlive = True
-        self.teleportObjects = None
+    #self.teleportObjects = None
 
     def printBoard(self):
         printObject = [["  " for x in range(self.D)] for y in range(self.D)]
 
         i=0
         while(i<self.n):
-            if isinstance(self.teleportObjects[i],Player):
-                pos = self.teleportObjects[i].getPos()
+            #if isinstance(self.teleportObjects[i],Player):
+            pos = self.teleportObjects[i].getPos()
+            try:
                 printObject[pos.getX()][pos.getY()] = \
                     self.teleportObjects[i].getName()
+            except AttributeError:
+                pass
             #print "player ",pos.getX(),pos.getY()
             i += 1
 
         i=self.n
         while i<self.n+self.O :
-            #self.teleportObjects[i] = Obstacle(1,1,i,self)
-
             if isinstance(self.teleportObjects[i],Obstacle):
-
                 pos = self.teleportObjects[i].getPos()
-                tmp = i+1-self.n
-                printObject[pos.getX()][pos.getY()] = 'O'+str(tmp)
+                #tmp = i+1-self.n
+                printObject[pos.getX()][pos.getY()] = 'O'+str(i+1-self.n)
             #print "Obstacle ",pos.getX(),pos.getY()
             i += 1
 
@@ -132,9 +132,12 @@ class SurvivalGame(object):
 
             if isinstance(self.teleportObjects[turn],Player):
                 t = self.teleportObjects[turn]
-                if t.health > 0:
-                    t.askForMove()
-                    print ""
+                try:
+                    if t.health > 0:
+                        t.askForMove()
+                        print ""
+                except AttributeError:
+                    pass
 
             turn = (turn + 1) % self.n
             #print "turn ",turn

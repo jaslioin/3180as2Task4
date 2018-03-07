@@ -23,8 +23,9 @@ class Wand(object):
             if player is not None:
                 print "target race ",player.getName()
                 print "owner race ",self.owner.getName()
-                if player.getName()[0] == self.owner.getName()[0] and player.getName()[1] in [0,1,2,3,4,5,6,7,8,9]:
-                    player.increaseHealth(self.effect)
+                if player.getName()[0] == self.owner.getName()[0]:
+                    if int(player.getName()[1]) in [0,1,2,3,4,5,6,7,8,9]:
+                        player.increaseHealth(self.effect)
                 elif player.getName()[1] == self.owner.getName()[0]:
                     player.increaseHealth(self.effect)
                 else:
