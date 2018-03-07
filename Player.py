@@ -34,7 +34,7 @@ class Player(object):
         randx = random.randint(0, self.game.D-1)
 
         randy = random.randint(0, self.game.D-1)
-        print "Player teleported to ",randx," ",randy
+        #print "Player teleported to ",randx," ",randy
         while self.game.positionOccupied(randx,randy):
             randx = random.randint(0, self.game.D-1)
             randy = random.randint(0, self.game.D-1)

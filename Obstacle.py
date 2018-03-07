@@ -26,7 +26,7 @@ class Obstacle(object):
     def teleport(self):
         randx = random.randint(0, self.game.D - 1)
         randy = self.game.D - randx - 1
-        print "Obstacle teleported to ",randx," ",randy
+        #print "Obstacle teleported to ",randx," ",randy
         while self.game.positionOccupied(randx, randy):
             randx = random.randint(0, self.game.D - 1)
             randy = self.game.D - randx - 1
